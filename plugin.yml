@@ -4,7 +4,7 @@ api: [5.0.0]
 main: Will\ShopUIWithCommand
 author: Will
 description: A simple ShopUI plugin with EconomyAPI integration.
-softdepend: [EconomyAPI] , [FormAPI]
+softdepend: [EconomyAPI , FormAPI]
 
 commands:
   additem:
