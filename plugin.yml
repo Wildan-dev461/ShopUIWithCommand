@@ -1,0 +1,32 @@
+name: ShopUIWithCommand
+version: 1.0.0
+api: [5.0.0]
+main: Will\ShopUIWithCommand
+author: Will
+description: A simple ShopUI plugin with EconomyAPI integration.
+
+commands:
+  additem:
+    description: Add an key for sale.
+    permission: shopui.command.additem
+
+  shop:
+    description: Open the shop UI.
+    permission: shopui.command.shop
+    
+  delitem:
+    description: Remove a shop
+    permission: shopui.command.delitem
+
+permissions:
+  shopui.command.additem:
+    description: Allow players to add items to the shop.
+    default: op
+
+  shopui.command.shop:
+    description: Allow players to open the shop UI.
+    default: true
+
+  shopui.command.delitem:
+    description: Allow players to remove a shop
+    default: op
