@@ -1,0 +1,18 @@
+# ShopUIWithCommand Configuration File
+
+# Items for sale in the shop
+itemsForSale:
+  - name: "Item1"
+    price: 100
+    command: "give {player} stone 64"
+  - name: "Item2"
+    price: 200
+    command: "give {player} iron_sword 1"
+  # Add more items here as needed
+
+# Messages used in the plugin
+messages:
+  notEnoughMoney: "You don't have enough money to buy this item."
+  itemPurchased: "Item purchased successfully!"
+
+# You can add more configuration options here if needed
