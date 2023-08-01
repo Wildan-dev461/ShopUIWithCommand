@@ -10,7 +10,7 @@ use pocketmine\event\Listener;
 use pocketmine\player\Player;
 use pocketmine\utils\Config;
 use jojoe77777\FormAPI\SimpleForm;
-use onebone\coinapi\CoinAPI;
+use onebone\economyapi\EconomyAPI;
 
 class ShopUIWithCommand extends PluginBase implements Listener {
 
@@ -26,14 +26,14 @@ class ShopUIWithCommand extends PluginBase implements Listener {
     }
 
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool {
-        if ($cmd->getName() === 'addkey') {
+        if ($cmd->getName() === 'additem') {
             if (!$sender instanceof Player || !$sender->hasPermission('shopui.command.addkey')) {
                 $sender->sendMessage("You don't have permission to use this command.");
                 return true;
             }
 
             if (count($args) < 4) {
-                $sender->sendMessage("Usage: /addkey <name> <price> <command>");
+                $sender->sendMessage("Usage: /additem <name> <price> <command>");
                 return false;
             }
 
@@ -53,15 +53,15 @@ class ShopUIWithCommand extends PluginBase implements Listener {
             $sender->sendMessage("Item added for sale successfully!");
 
             return true;
-        } elseif ($cmd->getName() === 'keyshop') {
+        } elseif ($cmd->getName() === 'shop') {
             if ($sender instanceof Player) {
                 $this->buyUI($sender);
                 return true;
             } else {
                 $sender->sendMessage("This command can only be used in-game.");
             }
-        } elseif ($cmd->getName() === 'delshop') {
-            if (!$sender instanceof Player || !$sender->hasPermission('shopui.command.delshop')) {
+        } elseif ($cmd->getName() === 'delitem') {
+            if (!$sender instanceof Player || !$sender->hasPermission('shopui.command.delitem')) {
                 $sender->sendMessage("You don't have permission to use this command.");
                 return true;
             }
@@ -129,11 +129,11 @@ class ShopUIWithCommand extends PluginBase implements Listener {
             }
         });
 
-        $form->setTitle("§5Astral §6KeyShop");
-        $form->setContent("§eHi, " . $player->getName() . "! \n§aYou have: " . CoinAPI::getInstance()->myCoin($player) . " Coins. \nSelect a key to purchase:");
+        $form->setTitle("§0Shop");
+        $form->setContent("§eHi, " . $player->getName() . "! \n§aYou have: " . EconomyAPI::getInstance()->myMoney($player) . " Money. \nSelect an item to purchase:");
 
         foreach ($this->itemsForSale as $itemData) {
-            $form->addButton($itemData['name'] . "\n§0Price: " . $itemData['price'] . " §6Coins");
+            $form->addButton($itemData['name'] . "\n§0Price: §a$" . $itemData['price'] . " §aMoney");
         }
 
         $form->sendToPlayer($player);
