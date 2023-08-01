@@ -1,6 +1,11 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Wildan-dev461/ShopUIWithCommand
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Wildan-dev461/XpShop
 build-by-default: true
 branches:
 - main
-projects: []
+projects:
+  XpShop:
+    path: ""
+    libFormAPI:
+      - src: jojoe77777/FormAPI/FormAPI
+        version: ^2.1.1
 ...
