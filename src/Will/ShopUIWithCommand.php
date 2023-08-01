@@ -27,7 +27,7 @@ class ShopUIWithCommand extends PluginBase implements Listener {
 
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool {
         if ($cmd->getName() === 'additem') {
-            if (!$sender instanceof Player || !$sender->hasPermission('shopui.command.addkey')) {
+            if (!$sender instanceof Player || !$sender->hasPermission('shopui.command.additem')) {
                 $sender->sendMessage("You don't have permission to use this command.");
                 return true;
             }
@@ -67,7 +67,7 @@ class ShopUIWithCommand extends PluginBase implements Listener {
             }
 
             if (count($args) === 0) {
-                $sender->sendMessage("Usage: /delshop <slot id>");
+                $sender->sendMessage("Usage: /delitem <button id (0 it is first id)>");
                 return false;
             }
 
@@ -122,9 +122,9 @@ class ShopUIWithCommand extends PluginBase implements Listener {
                     $this->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), $command);
 
                     // Send a success message to the player
-                    $player->sendMessage("§aKey purchased successfully!");
+                    $player->sendMessage("§aItem purchased successfully!");
                 } else {
-                    $player->sendMessage("§cYou don't have enough coins to buy this Key");
+                    $player->sendMessage("§cYou don't have enough money to buy this Item");
                 }
             }
         });
